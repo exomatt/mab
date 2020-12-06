@@ -4,6 +4,8 @@ import com.exomat.mab.model.Group;
 import com.exomat.mab.repository.GroupRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class GroupServiceImpl implements GroupService {
     private final GroupRepository groupRepository;
@@ -19,6 +21,16 @@ public class GroupServiceImpl implements GroupService {
 
     @Override
     public Group findGroup(String name) {
-        return groupRepository.findByName(name).orElseThrow(() -> new IllegalGroupNameException("Cannot found group with that name"));
+        return groupRepository.findByName(name).orElseThrow(() -> new IllegalGroupNameException("Cannot found group with that name: " + name));
+    }
+
+    @Override
+    public Group findById(Long id) {
+        return groupRepository.findById(id).orElseThrow(() -> new IllegalGroupNameException("Cannot found group with that id: " + id));
+    }
+
+    @Override
+    public List<Group> findAll() {
+        return groupRepository.findAll();
     }
 }

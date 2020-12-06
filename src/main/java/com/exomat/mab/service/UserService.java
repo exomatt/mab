@@ -20,6 +20,8 @@ public interface UserService {
 
     User findUser(String username);
 
+    User findById(Long id);
+
     User save(User user);
 
     void deleteUser(String username) throws IllegalUsernameException;
@@ -31,5 +33,7 @@ public interface UserService {
     User deleteUserFromGroup(String username);
 
     List<User> findUsersInGroup(String groupName);
+
+    List<User> findAll();
 
 }

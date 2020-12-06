@@ -42,6 +42,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findById(Long id) {
+        return userRepository.findById(id).orElseThrow(() -> new IllegalUsernameException("Cannot found user with that id"));
+
+    }
+
+    @Override
     public User save(User user) {
         return userRepository.save(user);
     }
@@ -75,6 +81,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> findUsersInGroup(String groupName) {
         return groupService.findGroup(groupName).getUsers();
+    }
+
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
     }
 
     public static boolean validate(String emailStr) {

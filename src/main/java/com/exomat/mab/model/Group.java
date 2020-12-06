@@ -6,6 +6,7 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity(name = "group_table")
@@ -17,6 +18,7 @@ public class Group {
     @GeneratedValue
     private Long id;
     @NonNull
+    @NotBlank(message = "Name is mandatory")
     private String name;
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "userGroup")
     private List<User> users;
